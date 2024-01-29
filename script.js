@@ -1,44 +1,16 @@
-console.log("Select an option: \n 1.Add \n 2.Substract \n 3.Multiply \n 4.Divide");
+var n = parseInt(prompt("enter the number of terms"));
+var sum = 0;
+var series = " ";
 
-var num1 = prompt("Please Enter first number: ");
-var num2 = prompt("Please Enter second number: ");
-var option = prompt("Please  choose an operation: ");
-var result = null;
 
-num1 = parseInt(num1);
-num2 = parseInt(num2);
-option = parseInt(option);
-
-var num1Con = isNaN(num1);
-var num2Con = isNaN(num2);
-var optionCon = isNaN(option);
-
-if (num1Con || num2Con || optionCon) {
-    console.log("Invalid input!")
-} else {
-    switch (option) {
-        case 1:
-            result = num1 + num2;
-            break;
-        case 2:
-            result = num1 - num2;
-            break;
-        case 3:
-            result = num1 * num2;
-            break;
-        case 4:
-            result = num1 / num2;
-            break;
-        default:
-            break;
-    }
+for (var i = 1; i <= n; i++) {
+    sum += i ** 2;
+    series += (i ** 2).toString();
+    if (i == n) { continue; }
+    series += " + "
 }
 
-if (result == null) {
-    console.log("No result!");
-} else {
-    console.log("result : " + result);
-}
+console.log(`${series} = ${sum}`);
 
 
 
@@ -46,6 +18,61 @@ if (result == null) {
 
 
 
+
+
+
+
+
+
+
+
+
+// *****   Number calculator    ********
+
+
+
+
+// console.log("Select an option: \n 1.Add \n 2.Substract \n 3.Multiply \n 4.Divide");
+
+// var num1 = prompt("Please Enter first number: ");
+// var num2 = prompt("Please Enter second number: ");
+// var option = prompt("Please  choose an operation: ");
+// var result = null;
+
+// num1 = parseInt(num1);
+// num2 = parseInt(num2);
+// option = parseInt(option);
+
+// var num1Con = isNaN(num1);
+// var num2Con = isNaN(num2);
+// var optionCon = isNaN(option);
+
+// if (num1Con || num2Con || optionCon) {
+//     console.log("Invalid input!")
+// } else {
+//     switch (option) {
+//         case 1:
+//             result = num1 + num2;
+//             break;
+//         case 2:
+//             result = num1 - num2;
+//             break;
+//         case 3:
+//             result = num1 * num2;
+//             break;
+//         case 4:
+//             result = num1 / num2;
+//             break;
+//         default:
+//             break;
+//     }
+// }
+
+// if (result == null) {
+//     console.log("No result!");
+// } else {
+//     console.log("result : " + result);
+// }
 
 
 
