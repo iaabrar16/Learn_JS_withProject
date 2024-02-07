@@ -1,16 +1,3 @@
-var n = parseInt(prompt("enter the number of terms"));
-var sum = 0;
-var series = " ";
-
-
-for (var i = 1; i <= n; i++) {
-    sum += i ** 2;
-    series += (i ** 2).toString();
-    if (i == n) { continue; }
-    series += " + "
-}
-
-console.log(`${series} = ${sum}`);
 
 
 
@@ -21,6 +8,53 @@ console.log(`${series} = ${sum}`);
 
 
 
+// *****   AJAX with example    ********
+
+
+// document.getElementById('get_data').addEventListener('click', loadData);
+
+
+// function loadData() {
+//     // create XHR object (XML http req)
+//     let xhr = new XMLHttpRequest();
+
+//     // open
+//     xhr.open('GET', 'data.txt', true);
+
+//     xhr.onload = function () {
+
+//         // http status
+//         // 200: ok
+//         // 403: forbidden
+//         // 404: error
+
+//         if (this.status === 200) {
+//             document.getElementById('output').innerHTML = `<h2>${this.responseText}</h2>`
+//         }
+//     }
+//     xhr.send();
+// }
+
+
+
+// *****   Sum of the series of squares numbers    ********
+
+
+
+
+// var n = parseInt(prompt("enter the number of terms"));
+// var sum = 0;
+// var series = " ";
+
+
+// for (var i = 1; i <= n; i++) {
+//     sum += i ** 2;
+//     series += (i ** 2).toString();
+//     if (i == n) { continue; }
+//     series += " + "
+// }
+
+// console.log(`${series} = ${sum}`);
 
 
 
@@ -105,13 +139,6 @@ console.log(`${series} = ${sum}`);
 // }
 
 // console.log("Your grade is : " + grade);
-
-
-
-
-
-
-
 
 
 
