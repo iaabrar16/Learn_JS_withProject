@@ -1,142 +1,142 @@
-// // Get the UI elements
-// let form = document.querySelector('#book-form');
-// let booklist = document.querySelector('#book-list');
+// Get the UI elements
+let bform = document.querySelector('#book-bform');
+let booklist = document.querySelector('#book-list');
 
 
-// // Book Class
-// class Book {
-//     constructor(title, author, isbn) {
-//         this.title = title;
-//         this.author = author;
-//         this.isbn = isbn;
-//     }
-// }
+// Book Class
+class Book {
+    constructor(title, author, isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+}
 
-// // UI Class
-// class UI {
-//     static addToBooklist(book) {
-//         let list = document.querySelector('#book-list');
-//         let row = document.createElement('tr');
-//         row.innerHTML = `
-//         <td>${book.title}</td>
-//         <td>${book.author}</td>
-//         <td>${book.isbn}</td>
-//         <td><a href='#' class="delete">X</a></td>`;
+// UI Class
+class UI {
+    static addToBooklist(book) {
+        let list = document.querySelector('#book-list');
+        let row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.isbn}</td>
+        <td><a href='#' class="delete">X</a></td>`;
 
-//         list.appendChild(row);
+        list.appendChild(row);
 
-//     }
+    }
 
-//     static clearFields() {
-//         document.querySelector("#title").value = '';
-//         document.querySelector("#author").value = '';
-//         document.querySelector("#isbn").value = '';
-//     }
+    static clearFields() {
+        document.querySelector("#title").value = '';
+        document.querySelector("#author").value = '';
+        document.querySelector("#isbn").value = '';
+    }
 
-//     static showAlert(message, className) {
-//         let div = document.createElement('div');
-//         div.className = `alert ${className}`;
-//         div.appendChild(document.createTextNode(message));
-//         //console.log(div);
-//         let container = document.querySelector('.container');
-//         let form = document.querySelector('#book-form');
-//         container.insertBefore(div, form);
+    static showAlert(message, className) {
+        let div = document.createElement('div');
+        div.className = `alert ${className}`;
+        div.appendChild(document.createTextNode(message));
+        //console.log(div);
+        let container = document.querySelector('.container');
+        let bform = document.querySelector('#book-bform');
+        container.insertBefore(div, bform);
 
-//         setTimeout(() => {
-//             document.querySelector('.alert').remove();
-//         }, 3000);
-//     }
+        setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+    }
 
-//     static deleteFromBook(target) {
-//         if (target.hasAttribute('href')) {
-//             target.parentElement.parentElement.remove();
-//             Store.removeBook(target.parentElement.previousElementSibling.textContent.trim());
-//             UI.showAlert('Book Removed!', 'success');
-//         }
-//     }
-// }
+    static deleteFromBook(target) {
+        if (target.hasAttribute('href')) {
+            target.parentElement.parentElement.remove();
+            Store.removeBook(target.parentElement.previousElementSibling.textContent.trim());
+            UI.showAlert('Book Removed!', 'success');
+        }
+    }
+}
 
-// // Local Storage Class
-// class Store {
-//     static getBooks() {
-//         let books;
-//         if (localStorage.getItem('books') === null) {
-//             books = [];
-//         } else {
-//             books = JSON.parse(localStorage.getItem('books'));
-//         }
-//         return books;
-//     }
+// Local Storage Class
+class Store {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books;
+    }
 
-//     static addBook(book) {
-//         let books = Store.getBooks();
-//         books.push(book);
+    static addBook(book) {
+        let books = Store.getBooks();
+        books.push(book);
 
-//         localStorage.setItem('books', JSON.stringify(books));
-//     }
+        localStorage.setItem('books', JSON.stringify(books));
+    }
 
-//     static displayBooks() {
-//         let books = Store.getBooks();
+    static displayBooks() {
+        let books = Store.getBooks();
 
-//         books.forEach(book => {
-//             UI.addToBooklist(book);
-//         });
-//     }
+        books.forEach(book => {
+            UI.addToBooklist(book);
+        });
+    }
 
-//     static removeBook(isbn) {
-//         let books = Store.getBooks();
+    static removeBook(isbn) {
+        let books = Store.getBooks();
 
-//         books.forEach((book, index) => {
-//             if (book.isbn === isbn) {
-//                 books.splice(index, 1);
-//             }
-//         })
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        })
 
-//         localStorage.setItem('books', JSON.stringify(books));
-//     }
-// }
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
 
-// // Add Event Listener
-// form.addEventListener('submit', newBook);
-// booklist.addEventListener('click', removeBook);
-// document.addEventListener('DOMContentLoaded', Store.displayBooks());
-
-
-// // Define functions
-
-// function newBook(e) {
-//     let title = document.querySelector("#title").value,
-//         author = document.querySelector("#author").value,
-//         isbn = document.querySelector("#isbn").value;
+// Add Event Listener
+bform.addEventListener('submit', newBook);
+booklist.addEventListener('click', removeBook);
+document.addEventListener('DOMContentLoaded', Store.displayBooks());
 
 
+// Define functions
 
-//     if (title === '' || author === '' || isbn === '') {
-
-//         UI.showAlert("Please fill all the fields!", "error");
-//     } else {
-
-//         let book = new Book(title, author, isbn);
-
-//         UI.addToBooklist(book);
-
-//         UI.clearFields();
-
-//         UI.showAlert("Book Added!", "success");
-
-//         Store.addBook(book);
-//     }
+function newBook(e) {
+    let title = document.querySelector("#title").value,
+        author = document.querySelector("#author").value,
+        isbn = document.querySelector("#isbn").value;
 
 
 
+    if (title === '' || author === '' || isbn === '') {
 
-//     e.preventDefault();
-// }
+        UI.showAlert("Please fill all the fields!", "error");
+    } else {
 
-// function removeBook(e) {
-//     UI.deleteFromBook(e.target);
-//     e.preventDefault();
-// }
+        let book = new Book(title, author, isbn);
+
+        UI.addToBooklist(book);
+
+        UI.clearFields();
+
+        UI.showAlert("Book Added!", "success");
+
+        Store.addBook(book);
+    }
+
+
+
+
+    e.preventDefault();
+}
+
+function removeBook(e) {
+    UI.deleteFromBook(e.target);
+    e.preventDefault();
+}
 
 
 
@@ -284,168 +284,168 @@ function removeFromLS(taskItem) {
 
 
 
-// *****   Fetch API with example    ********
+// // *****   Fetch API with example    ********
 
 
-document.getElementById('get_data').addEventListener('click', getData);
+// document.getElementById('get_data').addEventListener('click', getData);
 
 
-function getData() {
-    fetch('https://api.chucknorris.io/jokes/random')
-        .then(res => res.json())
-        .then(data => { console.log(data); })
-        .catch(err => { console.log(err); })
-}
+// function getData() {
+//     fetch('https://api.chucknorris.io/jokes/random')
+//         .then(res => res.json())
+//         .then(data => { console.log(data); })
+//         .catch(err => { console.log(err); })
+// }
 
 
 
 
 
-// *****   AJAX with example    ********
+// // *****   AJAX with example    ********
 
 
-document.getElementById('get_data').addEventListener('click', loadData);
+// document.getElementById('get_data').addEventListener('click', loadData);
 
 
-function loadData() {
-    // create XHR object (XML http req)
-    let xhr = new XMLHttpRequest();
+// function loadData() {
+//     // create XHR object (XML http req)
+//     let xhr = new XMLHttpRequest();
 
-    // open
-    xhr.open('GET', 'data.txt', true);
+//     // open
+//     xhr.open('GET', 'data.txt', true);
 
-    xhr.onload = function () {
+//     xhr.onload = function () {
 
-        // http status
-        // 200: ok
-        // 403: forbidden
-        // 404: error
+//         // http status
+//         // 200: ok
+//         // 403: forbidden
+//         // 404: error
 
-        if (this.status === 200) {
-            document.getElementById('output').innerHTML = `<h2>${this.responseText}</h2>`
-        }
-    }
-    xhr.send();
-}
+//         if (this.status === 200) {
+//             document.getElementById('output').innerHTML = `<h2>${this.responseText}</h2>`
+//         }
+//     }
+//     xhr.send();
+// }
 
 
 
-// *****   Sum of the series of squares numbers    ********
+// // *****   Sum of the series of squares numbers    ********
 
 
 
 
-var n = parseInt(prompt("enter the number of terms"));
-var sum = 0;
-var series = " ";
+// var n = parseInt(prompt("enter the number of terms"));
+// var sum = 0;
+// var series = " ";
 
 
-for (var i = 1; i <= n; i++) {
-    sum += i ** 2;
-    series += (i ** 2).toString();
-    if (i == n) { continue; }
-    series += " + "
-}
+// for (var i = 1; i <= n; i++) {
+//     sum += i ** 2;
+//     series += (i ** 2).toString();
+//     if (i == n) { continue; }
+//     series += " + "
+// }
 
-console.log(`${series} = ${sum}`);
+// console.log(`${series} = ${sum}`);
 
 
 
 
 
 
-// *****   Number calculator    ********
+// // *****   Number calculator    ********
 
 
 
 
-console.log("Select an option: \n 1.Add \n 2.Substract \n 3.Multiply \n 4.Divide");
+// console.log("Select an option: \n 1.Add \n 2.Substract \n 3.Multiply \n 4.Divide");
 
-var num1 = prompt("Please Enter first number: ");
-var num2 = prompt("Please Enter second number: ");
-var option = prompt("Please  choose an operation: ");
-var result = null;
+// var num1 = prompt("Please Enter first number: ");
+// var num2 = prompt("Please Enter second number: ");
+// var option = prompt("Please  choose an operation: ");
+// var result = null;
 
-num1 = parseInt(num1);
-num2 = parseInt(num2);
-option = parseInt(option);
+// num1 = parseInt(num1);
+// num2 = parseInt(num2);
+// option = parseInt(option);
 
-var num1Con = isNaN(num1);
-var num2Con = isNaN(num2);
-var optionCon = isNaN(option);
+// var num1Con = isNaN(num1);
+// var num2Con = isNaN(num2);
+// var optionCon = isNaN(option);
 
-if (num1Con || num2Con || optionCon) {
-    console.log("Invalid input!")
-} else {
-    switch (option) {
-        case 1:
-            result = num1 + num2;
-            break;
-        case 2:
-            result = num1 - num2;
-            break;
-        case 3:
-            result = num1 * num2;
-            break;
-        case 4:
-            result = num1 / num2;
-            break;
-        default:
-            break;
-    }
-}
+// if (num1Con || num2Con || optionCon) {
+//     console.log("Invalid input!")
+// } else {
+//     switch (option) {
+//         case 1:
+//             result = num1 + num2;
+//             break;
+//         case 2:
+//             result = num1 - num2;
+//             break;
+//         case 3:
+//             result = num1 * num2;
+//             break;
+//         case 4:
+//             result = num1 / num2;
+//             break;
+//         default:
+//             break;
+//     }
+// }
 
-if (result == null) {
-    console.log("No result!");
-} else {
-    console.log("result : " + result);
-}
+// if (result == null) {
+//     console.log("No result!");
+// } else {
+//     console.log("result : " + result);
+// }
 
 
 
 
 
 
-// *****   Grade calculator    ********
+// // *****   Grade calculator    ********
 
 
 
 
-var number = prompt("Please Enter your marks: ");
-number = parseInt(number);
-var grade;
+// var number = prompt("Please Enter your marks: ");
+// number = parseInt(number);
+// var grade;
 
-if (number <= 100 && number >= 80) {
-    grade = "A+";
-} else if (number <= 80 && number >= 70) {
-    grade = "A";
-} else if (number <= 70 && number >= 60) {
-    grade = "B";
-} else if (number <= 60 && number >= 50) {
-    grade = "C";
-} else if (number <= 50 && number >= 40) {
-    grade = "D";
-} else if (number <= 40 && number >= 0) {
-    grade = "F";
-} else {
-    grade = "Invalid Input";
-}
+// if (number <= 100 && number >= 80) {
+//     grade = "A+";
+// } else if (number <= 80 && number >= 70) {
+//     grade = "A";
+// } else if (number <= 70 && number >= 60) {
+//     grade = "B";
+// } else if (number <= 60 && number >= 50) {
+//     grade = "C";
+// } else if (number <= 50 && number >= 40) {
+//     grade = "D";
+// } else if (number <= 40 && number >= 0) {
+//     grade = "F";
+// } else {
+//     grade = "Invalid Input";
+// }
 
-console.log("Your grade is : " + grade);
+// console.log("Your grade is : " + grade);
 
 
 
 
 
 
-// *****   Temparature calculator    ********
+// // *****   Temparature calculator    ********
 
 
 
 
-var temp = prompt("Please Enter a temparature: ")
-var result = 9 / 5 * temp + 32;
-alert("Farenheit: " + result + "Degree");
-console.log("Task Complete!")
+// var temp = prompt("Please Enter a temparature: ")
+// var result = 9 / 5 * temp + 32;
+// alert("Farenheit: " + result + "Degree");
+// console.log("Task Complete!")
 
 
